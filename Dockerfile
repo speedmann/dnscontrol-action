@@ -1,4 +1,4 @@
-FROM stackexchange/dnscontrol:v3.7.0@sha256:215ed29de7b650d321c5d9dddf6a4659d8673346feda20d1eba5c3eeadfc8f0d
+FROM ghcr.io/koenrh/dnscontrol:v3.12.0@sha256:387bc4a467803daceaf4da41e9ac6a0b9314a7035c0d5739c8ef7ba9845e6eca
 
 LABEL repository="https://github.com/koenrh/dnscontrol-action"
 LABEL maintainer="Koen Rouwhorst <info@koenrouwhorst.nl>"
@@ -10,7 +10,5 @@ LABEL "com.github.actions.color"="yellow"
 
 RUN apk add --no-cache bash
 
-COPY README.md /
-
-COPY entrypoint.sh /entrypoint.sh
+COPY README.md entrypoint.sh bin/filter-preview-output.sh /
 ENTRYPOINT ["/entrypoint.sh"]
