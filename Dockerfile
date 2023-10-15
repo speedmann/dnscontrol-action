@@ -16,7 +16,7 @@ RUN apk -U --no-cache upgrade && \
 RUN curl -sL "https://github.com/StackExchange/dnscontrol/releases/download/v${DNSCONTROL_VERSION}/dnscontrol_${DNSCONTROL_VERSION}_linux_amd64.tar.gz" \
   -o dnscontrol.tar.gz && \
   echo "$DNSCONTROL_CHECKSUM  dnscontrol.tar.gz" | sha256sum -c - && \
-  tar zfvz dnscontrol.tar.gz && \
+  tar xfvz dnscontrol.tar.gz && \
   chmod +x dnscontrol && \
   mv dnscontrol /usr/local/bin/dnscontrol
 
