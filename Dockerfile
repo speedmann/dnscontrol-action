@@ -13,7 +13,7 @@ ENV DNSCONTROL_CHECKSUM="de1bf2c40e50fa21d72acdb7c53a9cd5b3883bb0ffcf18368a5e26a
 
 RUN apk -U --no-cache upgrade && \
     apk add --no-cache bash ca-certificates curl libc6-compat
-RUN curl -sL "https://github.com/StackExchange/dnscontrol/releases/download/v$DNSCONTROL_VERSION/dnscontrol_$DNSCONTROL_VERSION_linux_amd64.tar.gz" \
+RUN curl -sL "https://github.com/StackExchange/dnscontrol/releases/download/v${DNSCONTROL_VERSION}/dnscontrol_${DNSCONTROL_VERSION}_linux_amd64.tar.gz" \
   -o dnscontrol.tar.gz && \
   echo "$DNSCONTROL_CHECKSUM  dnscontrol.tar.gz" | sha256sum -c - && \
   tar zfvz dnscontrol.tar.gz && \
