@@ -51,7 +51,7 @@ jobs:
   preview:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: DNSControl preview
         uses: koenrh/dnscontrol-action@v3
@@ -99,7 +99,7 @@ GitHub Action.
 
 ```yaml
 - name: Preview pull request comment
-  uses: unsplash/comment-on-pr@v1.2.0
+  uses: unsplash/comment-on-pr@v1.3.0
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
@@ -112,7 +112,7 @@ GitHub Action.
 
 ### push
 
-Run the action with the 'push' arugment to publish the changes to the specified
+Run the action with the 'push' argument to publish the changes to the specified
 DNS providers.
 
 Running the action with the 'push' argument will publish the changes with the
@@ -131,7 +131,7 @@ jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: DNSControl push
         uses: koenrh/dnscontrol-action@v3
@@ -162,7 +162,30 @@ and then define the `creds.json` file as follows.
 ```json
 {
   "cloudflare":{
+    "TYPE": "CLOUDFLAREAPI",
     "apitoken": "$CLOUDFLARE_API_TOKEN"
   }
 }
+```
+
+## Dependabot
+
+[Dependabot](https://docs.github.com/en/github/administering-a-repository/keeping-your-actions-up-to-date-with-github-dependabot)
+is a GitHub service that helps developers to automate dependency maintenance and
+keep dependencies updated to the latest versions. It has native support for
+[GitHub Actions](https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates#package-ecosystem),
+which means you can use it in your GitHub repository to keep the DNSConrol Acion
+up-to-date.
+
+To enable Dependabot in your GitHub repository, add a `.github/dependabot.yml`
+file with the following contents:
+
+```yaml
+version: 2
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
 ```
