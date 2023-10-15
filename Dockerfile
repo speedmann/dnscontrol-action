@@ -8,15 +8,15 @@ LABEL "com.github.actions.description"="Deploy your DNS configuration to multipl
 LABEL "com.github.actions.icon"="cloud"
 LABEL "com.github.actions.color"="yellow"
 
-ENV DNSCONTROL_VERSION="3.31.4"
-ENV DNSCONTROL_CHECKSUM="054d236531df2674c9286279596f88f02c1cf7b1448dc5f643f1a1dbe705fe8d"
+ENV DNSCONTROL_VERSION="4.5.0"
+ENV DNSCONTROL_CHECKSUM="de1bf2c40e50fa21d72acdb7c53a9cd5b3883bb0ffcf18368a5e26a93f78290b"
 
 RUN apk -U --no-cache upgrade && \
     apk add --no-cache bash ca-certificates curl libc6-compat
-
-RUN curl -sL "https://github.com/StackExchange/dnscontrol/releases/download/v$DNSCONTROL_VERSION/dnscontrol-Linux" \
-  -o dnscontrol && \
-  echo "$DNSCONTROL_CHECKSUM  dnscontrol" | sha256sum -c - && \
+RUN curl -sL "https://github.com/StackExchange/dnscontrol/releases/download/v$DNSCONTROL_VERSION/dnscontrol_$DNSCONTROL_VERSION_linux_amd64.tar.gz" \
+  -o dnscontrol.tar.gz && \
+  echo "$DNSCONTROL_CHECKSUM  dnscontrol.tar.gz" | sha256sum -c - && \
+  tar zfvz dnscontrol.tar.gz && \
   chmod +x dnscontrol && \
   mv dnscontrol /usr/local/bin/dnscontrol
 
