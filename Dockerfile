@@ -9,7 +9,7 @@ LABEL "com.github.actions.icon"="cloud"
 LABEL "com.github.actions.color"="yellow"
 
 ENV DNSCONTROL_VERSION="4.14.0"
-ENV DNSCONTROL_CHECKSUM="de1bf2c40e50fa21d72acdb7c53a9cd5b3883bb0ffcf18368a5e26a93f78290b"
+ENV DNSCONTROL_CHECKSUM="5910b04d7998aa2af6f16852e042fbe9579535d440b162068d90aa6de15d462c"
 
 RUN apk -U --no-cache upgrade && \
     apk add --no-cache bash ca-certificates curl libc6-compat
